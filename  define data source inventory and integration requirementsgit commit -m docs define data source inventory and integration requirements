@@ -1,0 +1,728 @@
+[1mdiff --git a/docs/research/DATA_SOURCE_INVENTORY.md b/docs/research/DATA_SOURCE_INVENTORY.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cf54703[m
+[1m--- /dev/null[m
+[1m+++ b/docs/research/DATA_SOURCE_INVENTORY.md[m
+[36m@@ -0,0 +1,722 @@[m
+[32m+[m[32m# Corporate Finance & Sales Intelligence Copilot[m
+[32m+[m[32m# Data Source Inventory and Integration Requirements[m
+[32m+[m
+[32m+[m[32m## 1. Purpose[m
+[32m+[m
+[32m+[m[32mThis document identifies the data sources required to support the Corporate Finance & Sales Intelligence Copilot.[m
+[32m+[m
+[32m+[m[32mIt defines expected data domains, source types, integration methods, business usage, refresh requirements, access considerations, data quality requirements, and unresolved integration assumptions.[m
+[32m+[m
+[32m+[m[32mThis inventory is provisional until validated with the target company's stakeholders and IT team.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 2. Data Source Classification[m
+[32m+[m
+[32m+[m[32mSources are classified into the following categories:[m
+[32m+[m
+[32m+[m[32m| Category | Description |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| Structured | Relational tables, transactional records, APIs returning structured data |[m
+[32m+[m[32m| Semi-structured | JSON, XML, exported reports, structured spreadsheets |[m
+[32m+[m[32m| Unstructured | PDFs, policies, contracts, reports, presentations |[m
+[32m+[m[32m| Analytical | Existing dashboards, semantic models, KPI reports |[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 3. Provisional Data Source Inventory[m
+[32m+[m
+[32m+[m[32m### DS-01: ERP / Financial Management System[m
+[32m+[m
+[32m+[m[32m**Business domain:** Finance[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- General ledger[m
+[32m+[m[32m- Chart of accounts[m
+[32m+[m[32m- Journal entries[m
+[32m+[m[32m- Financial transactions[m
+[32m+[m[32m- Accounts payable[m
+[32m+[m[32m- Accounts receivable[m
+[32m+[m[32m- Expenses[m
+[32m+[m[32m- Financial statements[m
+[32m+[m[32m- Cost centers[m
+[32m+[m[32m- Accounting periods[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Financial performance analysis[m
+[32m+[m[32m- Profitability analysis[m
+[32m+[m[32m- Expense analysis[m
+[32m+[m[32m- Budget variance[m
+[32m+[m[32m- Receivables aging[m
+[32m+[m[32m- Payables analysis[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- Read-only database views[m
+[32m+[m[32m- Approved APIs[m
+[32m+[m[32m- Scheduled exports[m
+[32m+[m[32m- Data warehouse integration[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** To be determined; daily or more frequently where business requirements justify it.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** High[m
+[32m+[m
+[32m+[m[32m**Data owner:** Finance / IT[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which ERP is used?[m
+[32m+[m[32m- Can read-only access be provided?[m
+[32m+[m[32m- Are reporting views available?[m
+[32m+[m[32m- How are financial periods defined?[m
+[32m+[m[32m- Are multiple companies or subsidiaries included?[m
+[32m+[m[32m- How are currencies handled?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-02: Sales Transaction System[m
+[32m+[m
+[32m+[m[32m**Business domain:** Sales[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Sales orders[m
+[32m+[m[32m- Order lines[m
+[32m+[m[32m- Invoices[m
+[32m+[m[32m- Sales quantities[m
+[32m+[m[32m- Net sales[m
+[32m+[m[32m- Discounts[m
+[32m+[m[32m- Returns[m
+[32m+[m[32m- Product costs[m
+[32m+[m[32m- Sales channels[m
+[32m+[m[32m- Sales representatives[m
+[32m+[m[32m- Transaction dates[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Sales performance[m
+[32m+[m[32m- Revenue trends[m
+[32m+[m[32m- Product analysis[m
+[32m+[m[32m- Customer analysis[m
+[32m+[m[32m- Regional performance[m
+[32m+[m[32m- Profitability analysis[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- ERP database[m
+[32m+[m[32m- CRM APIs[m
+[32m+[m[32m- Sales database[m
+[32m+[m[32m- Scheduled CSV/Excel extracts[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Daily initially; faster refresh may be considered if justified.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** High[m
+[32m+[m
+[32m+[m[32m**Data owner:** Sales / Finance / IT[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which system is the source of truth for sales?[m
+[32m+[m[32m- Are sales orders and invoices separate?[m
+[32m+[m[32m- How are cancelled orders handled?[m
+[32m+[m[32m- How are returns and credit notes represented?[m
+[32m+[m[32m- Is revenue gross or net of discounts?[m
+[32m+[m[32m- Are costs available at transaction or product level?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-03: Customer Master / CRM[m
+[32m+[m
+[32m+[m[32m**Business domain:** Sales / Customer Intelligence[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Customer ID[m
+[32m+[m[32m- Customer name[m
+[32m+[m[32m- Customer classification[m
+[32m+[m[32m- Industry[m
+[32m+[m[32m- Region[m
+[32m+[m[32m- Contact information[m
+[32m+[m[32m- Assigned sales representative[m
+[32m+[m[32m- Credit terms[m
+[32m+[m[32m- Customer status[m
+[32m+[m[32m- Relationship history[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Customer 360[m
+[32m+[m[32m- Customer segmentation[m
+[32m+[m[32m- Sales performance[m
+[32m+[m[32m- Customer purchasing history[m
+[32m+[m[32m- Customer retention analysis[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- CRM API[m
+[32m+[m[32m- Read-only database[m
+[32m+[m[32m- Scheduled exports[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Daily or based on change frequency.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** High; personal and confidential information may be included.[m
+[32m+[m
+[32m+[m[32m**Data owner:** Sales / CRM administrator[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which CRM is used?[m
+[32m+[m[32m- What is the unique customer key?[m
+[32m+[m[32m- Are duplicate customers present?[m
+[32m+[m[32m- Are customer groups or parent-child relationships maintained?[m
+[32m+[m[32m- Which personal information is necessary for the use cases?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-04: Product Master[m
+[32m+[m
+[32m+[m[32m**Business domain:** Sales / Operations[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Product ID[m
+[32m+[m[32m- Product name[m
+[32m+[m[32m- SKU[m
+[32m+[m[32m- Category[m
+[32m+[m[32m- Subcategory[m
+[32m+[m[32m- Brand[m
+[32m+[m[32m- Unit of measure[m
+[32m+[m[32m- Product status[m
+[32m+[m[32m- Standard cost[m
+[32m+[m[32m- Selling price[m
+[32m+[m[32m- Product hierarchy[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Product performance[m
+[32m+[m[32m- Product profitability[m
+[32m+[m[32m- Product mix analysis[m
+[32m+[m[32m- Product knowledge retrieval[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- ERP database[m
+[32m+[m[32m- Product APIs[m
+[32m+[m[32m- Scheduled exports[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Daily or when master data changes.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Internal / confidential[m
+[32m+[m
+[32m+[m[32m**Data owner:** Sales / Operations / IT[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- How are products categorized?[m
+[32m+[m[32m- Are product hierarchies maintained?[m
+[32m+[m[32m- Are historical product mappings available?[m
+[32m+[m[32m- Are costs and prices restricted?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-05: Accounts Receivable and Payment Data[m
+[32m+[m
+[32m+[m[32m**Business domain:** Finance / Credit Control[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Invoice number[m
+[32m+[m[32m- Customer ID[m
+[32m+[m[32m- Invoice date[m
+[32m+[m[32m- Due date[m
+[32m+[m[32m- Invoice amount[m
+[32m+[m[32m- Outstanding amount[m
+[32m+[m[32m- Payment date[m
+[32m+[m[32m- Payment amount[m
+[32m+[m[32m- Credit notes[m
+[32m+[m[32m- Credit terms[m
+[32m+[m[32m- Credit limits[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Receivables aging[m
+[32m+[m[32m- Overdue customer identification[m
+[32m+[m[32m- Credit exposure[m
+[32m+[m[32m- Collection prioritization[m
+[32m+[m[32m- Customer financial risk analysis[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- ERP reporting views[m
+[32m+[m[32m- Finance APIs[m
+[32m+[m[32m- Scheduled extracts[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Daily, subject to source-system capability.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Highly confidential[m
+[32m+[m
+[32m+[m[32m**Data owner:** Finance / Credit Control[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- How are partial payments represented?[m
+[32m+[m[32m- How are disputes handled?[m
+[32m+[m[32m- How are credit notes applied?[m
+[32m+[m[32m- How is aging calculated?[m
+[32m+[m[32m- What is the agreed as-of date?[m
+[32m+[m[32m- How is customer credit exposure defined?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-06: Budget and Planning Data[m
+[32m+[m
+[32m+[m[32m**Business domain:** Finance[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Budget period[m
+[32m+[m[32m- Account[m
+[32m+[m[32m- Department[m
+[32m+[m[32m- Cost center[m
+[32m+[m[32m- Budget amount[m
+[32m+[m[32m- Approved budget[m
+[32m+[m[32m- Revised budget[m
+[32m+[m[32m- Forecast amount[m
+[32m+[m[32m- Version[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Budget versus actual[m
+[32m+[m[32m- Expense variance analysis[m
+[32m+[m[32m- Departmental reporting[m
+[32m+[m[32m- Financial planning[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- Finance database[m
+[32m+[m[32m- Excel/CSV[m
+[32m+[m[32m- Planning system API[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Monthly or when budgets are revised.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Highly confidential[m
+[32m+[m
+[32m+[m[32m**Data owner:** Finance[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Are budgets stored centrally?[m
+[32m+[m[32m- How many budget versions exist?[m
+[32m+[m[32m- Are revisions approved?[m
+[32m+[m[32m- What is the granularity of the budget?[m
+[32m+[m[32m- Are monthly budgets available?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-07: Sales Targets and Quotas[m
+[32m+[m
+[32m+[m[32m**Business domain:** Sales[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Target period[m
+[32m+[m[32m- Sales representative[m
+[32m+[m[32m- Region[m
+[32m+[m[32m- Product/category[m
+[32m+[m[32m- Target amount[m
+[32m+[m[32m- Target quantity[m
+[32m+[m[32m- Target version[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Target attainment[m
+[32m+[m[32m- Sales performance gaps[m
+[32m+[m[32m- Sales forecasting[m
+[32m+[m[32m- Management reporting[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- CRM[m
+[32m+[m[32m- Sales planning system[m
+[32m+[m[32m- Excel/CSV[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Monthly or when targets change.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Confidential[m
+[32m+[m
+[32m+[m[32m**Data owner:** Sales Management[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- How are targets allocated?[m
+[32m+[m[32m- Can targets change during the period?[m
+[32m+[m[32m- Are targets available by representative, region, and product?[m
+[32m+[m[32m- What is the official target version?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-08: Finance and Sales Policies[m
+[32m+[m
+[32m+[m[32m**Business domain:** Knowledge Management[m
+[32m+[m
+[32m+[m[32m**Expected documents:**[m
+[32m+[m[32m- Credit policies[m
+[32m+[m[32m- Payment terms[m
+[32m+[m[32m- Expense policies[m
+[32m+[m[32m- Pricing policies[m
+[32m+[m[32m- Discount approval procedures[m
+[32m+[m[32m- Sales procedures[m
+[32m+[m[32m- Customer onboarding procedures[m
+[32m+[m[32m- Finance SOPs[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Policy Q&A[m
+[32m+[m[32m- Procedure guidance[m
+[32m+[m[32m- Sales knowledge assistant[m
+[32m+[m[32m- Finance knowledge assistant[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- SharePoint[m
+[32m+[m[32m- Document management systems[m
+[32m+[m[32m- PDF ingestion[m
+[32m+[m[32m- Office document ingestion[m
+[32m+[m[32m- Approved file repositories[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Event-driven or scheduled document synchronization.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Mixed; document-level access restrictions may apply.[m
+[32m+[m
+[32m+[m[32m**Data owner:** Finance / Sales / HR / Legal / Document owners[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which version is authoritative?[m
+[32m+[m[32m- Are policies approved?[m
+[32m+[m[32m- Are documents superseded?[m
+[32m+[m[32m- Are permissions inherited?[m
+[32m+[m[32m- Are archived policies accessible?[m
+[32m+[m[32m- Can source links be preserved?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-09: Management Reports[m
+[32m+[m
+[32m+[m[32m**Business domain:** Finance / Sales / Management[m
+[32m+[m
+[32m+[m[32m**Expected documents:**[m
+[32m+[m[32m- Monthly reports[m
+[32m+[m[32m- Quarterly reports[m
+[32m+[m[32m- Sales performance reviews[m
+[32m+[m[32m- Finance commentary[m
+[32m+[m[32m- Executive summaries[m
+[32m+[m[32m- Operational reports[m
+[32m+[m[32m- Management presentations[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Explanation of business trends[m
+[32m+[m[32m- Cross-domain analysis[m
+[32m+[m[32m- Historical commentary[m
+[32m+[m[32m- Management reporting[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- SharePoint[m
+[32m+[m[32m- PDFs[m
+[32m+[m[32m- Excel[m
+[32m+[m[32m- PowerPoint[m
+[32m+[m[32m- Reporting system exports[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Monthly or when reports are published.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Highly confidential[m
+[32m+[m
+[32m+[m[32m**Data owner:** Finance / Sales / Senior Management[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which reports are official?[m
+[32m+[m[32m- Are reports available in machine-readable formats?[m
+[32m+[m[32m- Are reported metrics consistent with source databases?[m
+[32m+[m[32m- Are historical reports retained?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-10: Power BI Reports and Semantic Models[m
+[32m+[m
+[32m+[m[32m**Business domain:** Business Intelligence[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- KPI definitions[m
+[32m+[m[32m- Measures[m
+[32m+[m[32m- Aggregated datasets[m
+[32m+[m[32m- Dashboard outputs[m
+[32m+[m[32m- Historical business metrics[m
+[32m+[m[32m- Report metadata[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Existing KPI reuse[m
+[32m+[m[32m- Business metric consistency[m
+[32m+[m[32m- Report comparison[m
+[32m+[m[32m- Analytical reference[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- Approved Power BI REST APIs[m
+[32m+[m[32m- Semantic model access[m
+[32m+[m[32m- Exported datasets[m
+[32m+[m[32m- Excel exports[m
+[32m+[m[32m- Approved report exports[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Depends on source dataset refresh schedules.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Depends on report and model permissions.[m
+[32m+[m
+[32m+[m[32m**Data owner:** BI team / IT / Business owners[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which workspaces are available?[m
+[32m+[m[32m- Is semantic model access permitted?[m
+[32m+[m[32m- Which licensing requirements apply?[m
+[32m+[m[32m- Are APIs enabled?[m
+[32m+[m[32m- Are export restrictions configured?[m
+[32m+[m[32m- Are row-level security rules applied?[m
+[32m+[m[32m- Can the copilot respect existing permissions?[m
+[32m+[m
+[32m+[m[32m**Important:** Power BI is not automatically assumed to be an accessible integration. Its capabilities must be verified with the company's administrators.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-11: SharePoint and Corporate Document Libraries[m
+[32m+[m
+[32m+[m[32m**Business domain:** Enterprise Knowledge[m
+[32m+[m
+[32m+[m[32m**Expected data:**[m
+[32m+[m[32m- Documents[m
+[32m+[m[32m- Document metadata[m
+[32m+[m[32m- Folder structures[m
+[32m+[m[32m- Permissions[m
+[32m+[m[32m- Version information[m
+[32m+[m[32m- Created/modified timestamps[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Enterprise document search[m
+[32m+[m[32m- Policy retrieval[m
+[32m+[m[32m- Management report retrieval[m
+[32m+[m[32m- Evidence citations[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- Microsoft Graph API[m
+[32m+[m[32m- Approved SharePoint APIs[m
+[32m+[m[32m- Scheduled synchronization[m
+[32m+[m
+[32m+[m[32m**Expected refresh frequency:** Incremental synchronization where supported.[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Varies by document.[m
+[32m+[m
+[32m+[m[32m**Data owner:** IT / Document owners[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Is Microsoft 365 used?[m
+[32m+[m[32m- Which SharePoint sites are in scope?[m
+[32m+[m[32m- How are permissions managed?[m
+[32m+[m[32m- Are document versions accessible?[m
+[32m+[m[32m- Are incremental updates supported?[m
+[32m+[m[32m- Are deleted documents tracked?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m### DS-12: External or Supporting Business Data[m
+[32m+[m
+[32m+[m[32m**Business domain:** Supporting analytics[m
+[32m+[m
+[32m+[m[32m**Potential data:**[m
+[32m+[m[32m- Exchange rates[m
+[32m+[m[32m- Business calendars[m
+[32m+[m[32m- Holiday calendars[m
+[32m+[m[32m- Approved external economic indicators[m
+[32m+[m
+[32m+[m[32m**Primary use cases:**[m
+[32m+[m[32m- Currency conversion[m
+[32m+[m[32m- Time-period normalization[m
+[32m+[m[32m- Forecasting[m
+[32m+[m[32m- Contextual business analysis[m
+[32m+[m
+[32m+[m[32m**Potential integration methods:**[m
+[32m+[m[32m- Approved APIs[m
+[32m+[m[32m- Scheduled data feeds[m
+[32m+[m[32m- Controlled reference datasets[m
+[32m+[m
+[32m+[m[32m**Sensitivity:** Generally low, subject to source terms and company policy.[m
+[32m+[m
+[32m+[m[32m**Data owner:** Finance / IT[m
+[32m+[m
+[32m+[m[32m**Outstanding questions:**[m
+[32m+[m[32m- Which external data is necessary?[m
+[32m+[m[32m- Which sources are approved?[m
+[32m+[m[32m- Which exchange-rate methodology is used?[m
+[32m+[m[32m- What data licensing restrictions apply?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 4. Integration Requirements[m
+[32m+[m
+[32m+[m[32m### INT-REQ-01: Read-only source access[m
+[32m+[m
+[32m+[m[32mInitial integrations must not modify source-system business records.[m
+[32m+[m
+[32m+[m[32m### INT-REQ-02: Approved integration methods[m
+[32m+[m
+[32m+[m[32mAll integrations must use methods approved by the company's IT and security teams.[m
+[32m+[m
+[32m+[m[32m### INT-REQ-03: Source system identification[m
+[32m+[m
+[32m+[m[32mEvery ingested dataset must identify its originating system.[m
+[32m+[m
+[32m+[m[32m### INT-REQ-04: Data freshness[m
+[32m+[m
+[32m+[m[32mThe system must track:[m
+[32m+[m[32m- Last successful extraction[m
+[32m+[m[32m- Last source update where available[m
+[32m+[m[32m- Extraction timestamp[m
+[32m+[m[32m- Data coverage period[m
+[32m+[m[32m- Refresh status[m
+[32m+[m
+[32m+[m[32m### INT-REQ-05: Incremental extraction[m
+[32m+[m
+[32m+[m[32mWhere supported, integrations should extract changed records instead of repeatedly processing all data.[m
+[32m+[m
+[32m+[m[32m### INT-REQ-06: Failure handling[m
+[32m+[m
+[32m+[m[32mFailed integrations must:[m
+[32m+[m[32m- Record errors[m
+[32m+[m[32m- Support retry[m
+[32m+[m[32m- Avoid duplicate ingestion[m
+[32m+[m[32m- Preserve the last valid dataset[m
+[32m+[m[32m- Clearly communicate stale data[m
+[32m+[m
+[32m+[m[32m### INT-REQ-07: Data validation[m
+[32m+[m
+[32m+[m[32mExtracted data must be validated for:[m
+[32m+[m[32m- Required fields[m
+[32m+[m[32m- Data types[m
+[32m+[m[32m- Duplicate records[m
+[32m+[m[32m- Missing identifiers[m
+[32m+[m[32m- Invalid dates[m
+[32m+[m[32m- Currency consistency[m
+[32m+[m[32m- Referential integrity[m
+[32m+[m[32m- Unexpected record counts[m
+[32m+[m
+[32m+[m[32m### INT-REQ-08: Data lineage[m
+[32m+[m
+[32m+[m[32mEvery dataset and analytical result must preserve source traceability.[m
+[32m+[m
+[32m+[m[32m### INT-REQ-09: Permission enforcement[m
+[32m+[m
+[32m+[m[32mData access must respect user roles and applicable source-system permissions.[m
+[32m+[m
+[32m+[m[32m### INT-REQ-10: Configuration[m
+[32m+[m
+[32m+[m[32mIntegrations must be configurable without hardcoding credentials or business-specific connection details.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 5. Data Quality Requirements[m
+[32m+[m
+[32m+[m[32mThe system must evaluate:[m
+[32m+[m
+[32m+[m[32m### Completeness[m
+[32m+[m[32mAre required records and fields present?[m
+[32m+[m
+[32m+[m[32m### Accuracy[m
+[32m+[m[32mDo values match the authoritative source?[m
+[32m+[m
+[32m+[m[32m### Consistency[m
+[32m+[m[32mAre customer IDs, product IDs, currencies, dates, and definitions consistent?[m
+[32m+[m
+[32m+[m[32m### Timeliness[m
+[32m+[m[32mIs the dataset sufficiently recent for the requested analysis?[m
+[32m+[m
+[32m+[m[32m### Uniqueness[m
+[32m+[m[32mAre duplicate records or duplicated transactions present?[m
+[32m+[m
+[32m+[m[32m### Validity[m
+[32m+[m[32mDo values conform to expected data types, ranges, and business rules?[m
+[32m+[m
+[32m+[m[32m### Referential Integrity[m
+[32m+[m[32mDo transactions reference valid customers, products, accounts, and organizational dimensions?[m
+[32m+[m
+[32m+[m[32mData quality problems must be visible and must not silently contaminate analytical outputs.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 6. Data Ownership and Governance[m
+[32m+[m
+[32m+[m[32mEach source must have:[m
+[32m+[m[32m- Business owner[m
+[32m+[m[32m- Technical owner[m
+[32m+[m[32m- Approved access method[m
+[32m+[m[32m- Sensitivity classification[m
+[32m+[m[32m- Retention requirements[m
+[32m+[m[32m- Refresh schedule[m
+[32m+[m[32m- Data quality responsibility[m
+[32m+[m[32m- Access approval status[m
+[32m+[m
+[32m+[m[32mThe copilot must not become the authoritative system of record for operational transactions.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 7. Real Company Discovery Questionnaire[m
+[32m+[m
+[32m+[m[32m### Systems[m
+[32m+[m[32m1. Which ERP is used?[m
+[32m+[m[32m2. Which CRM is used?[m
+[32m+[m[32m3. Where are Finance and Sales transactions stored?[m
+[32m+[m[32m4. Is there an existing data warehouse?[m
+[32m+[m[32m5. Which BI tools are used?[m
+[32m+[m[32m6. Is SharePoint or another document management system available?[m
+[32m+[m
+[32m+[m[32m### Access[m
+[32m+[m[32m7. Are APIs available?[m
+[32m+[m[32m8. Can read-only database views be provided?[m
+[32m+[m[32m9. Are scheduled exports permitted?[m
+[32m+[m[32m10. Who approves access?[m
+[32m+[m[32m11. Are there restrictions on cloud AI processing?[m
+[32m+[m
+[32m+[m[32m### Finance[m
+[32m+[m[32m12. How are budgets maintained?[m
+[32m+[m[32m13. How are receivables aging reports generated?[m
+[32m+[m[32m14. Which financial KPIs are officially defined?[m
+[32m+[m[32m15. How are currencies and reporting periods handled?[m
+[32m+[m
+[32m+[m[32m### Sales[m
+[32m+[m[32m16. How are sales targets maintained?[m
+[32m+[m[32m17. What are the main sales reporting dimensions?[m
+[32m+[m[32m18. Is product cost or margin data available?[m
+[32m+[m[32m19. How are customer identities reconciled across systems?[m
+[32m+[m
+[32m+[m[32m### Documents[m
+[32m+[m[32m20. Where are approved policies stored?[m
+[32m+[m[32m21. How are document versions and permissions managed?[m
+[32m+[m[32m22. Which reports are authoritative?[m
+[32m+[m
+[32m+[m[32m### Security[m
+[32m+[m[32m23. What user roles exist?[m
+[32m+[m[32m24. Are row-level restrictions required?[m
+[32m+[m[32m25. What data classifications and retention rules apply?[m
+[32m+[m[32m26. Is on-premise or private-cloud deployment required?[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 8. Integration Risks[m
+[32m+[m
+[32m+[m[32m| Risk | Mitigation |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| No API availability | Evaluate approved exports, views, or alternate integrations |[m
+[32m+[m[32m| Inconsistent customer IDs | Develop controlled identity mapping |[m
+[32m+[m[32m| Incorrect financial definitions | Validate KPI definitions with Finance |[m
+[32m+[m[32m| Stale information | Display freshness and ingestion status |[m
+[32m+[m[32m| Missing product costs | Clearly limit profitability analysis |[m
+[32m+[m[32m| Restricted documents | Preserve permissions and filter retrieval |[m
+[32m+[m[32m| Power BI access limitations | Validate API, licensing, workspace and model access |[m
+[32m+[m[32m| Data quality issues | Establish validation and exception reports |[m
+[32m+[m[32m| Source system disruption | Use controlled extraction and minimize source load |[m
+[32m+[m[32m| Unauthorized data exposure | Enforce permissions and audit access |[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 9. Initial Assumptions[m
+[32m+[m
+[32m+[m[32mThese assumptions are provisional and must be validated:[m
+[32m+[m
+[32m+[m[32m1. The company has at least one authoritative source for sales transactions.[m
+[32m+[m[32m2. Finance data is available through an approved extraction method.[m
+[32m+[m[32m3. Customer and product master data exists.[m
+[32m+[m[32m4. Budget and target data may be maintained separately from transactions.[m
+[32m+[m[32m5. Some business knowledge is maintained in documents.[m
+[32m+[m[32m6. Existing BI reports may provide useful KPI definitions.[m
+[32m+[m[32m7. Real company data will only be used after authorization.[m
+[32m+[m[32m8. The first implementation will prioritize controlled, read-only access.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## 10. Deliverable and Acceptance Criteria[m
+[32m+[m
+[32m+[m[32mThis inventory is accepted when:[m
+[32m+[m
+[32m+[m[32m1. Required business data domains are identified.[m
+[32m+[m[32m2. Each data domain is mapped to relevant use cases.[m
+[32m+[m[32m3. Expected data elements are documented.[m
+[32m+[m[32m4. Potential integration methods are identified.[m
+[32m+[m[32m5. Sensitivity and ownership considerations are documented.[m
+[32m+[m[32m6. Refresh and data-quality requirements are defined.[m
+[32m+[m[32m7. Unknowns and assumptions are clearly documented.[m
+[32m+[m[32m8. The company discovery questionnaire is ready for stakeholder validation.[m
