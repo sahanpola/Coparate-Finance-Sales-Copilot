@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 
+from app.core.config import settings
+from app.api.v1.router import api_router
+
 app = FastAPI(
-    title="Corporate Finance & Sales Intelligence Copilot",
+    title= settings.app_name,
+    version= settings.app_version,
     description="Enterprise Finance and Sales Intelligence API",
-    version="0.1.0",
 )
 
 
